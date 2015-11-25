@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 
 <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($categ, 'categ_name') ?>
+    <?= $form->field($categ, 'categ_name')->label('Название') ?>
     
     <?= $form->field($categ, 'inc_exp_id')->dropDownList($items)->label('Категории') ?>
 

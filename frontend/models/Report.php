@@ -20,8 +20,7 @@ class Report extends Model
     {
         return [
             // name, email, subject and body are required
-            [['active_from', 'active_to'], 'required'],
-           // [['active_from', 'active_to'], 'date'],
+            [['active_from', 'active_to'], 'required', 'message' => 'Поле обязательно к заполнению'],
         ];
     }
     
@@ -42,7 +41,6 @@ class Report extends Model
                 c.categ_name
             ,   ie.inc_exp_name
             ,   u.user_name
-            ,   cm.cour_mon_name
             ,   sum(fb.summa) summa
             ,   case when cm.cour_mon_id = 1 then
         		  sum(fb.summa * 60)
@@ -59,12 +57,11 @@ class Report extends Model
         	and fb.categ_id = c.categ_id
         	and c.inc_exp_id = ie.inc_exp_id
         	and fb.cour_mon_id = cm.cour_mon_id
-        	and fb.fam_bud_create > DATE_FORMAT("'.$active_from .'","%d.%m.%Y")
-        	and fb.fam_bud_create < DATE_FORMAT("'.$active_to .'","%d.%m.%Y")
+        	and fb.fam_bud_create >= DATE_FORMAT("'.$active_from .'","%Y.%m.%d")
+        	and fb.fam_bud_create <= DATE_FORMAT("'.$active_to .'","%Y.%m.%d")
         group by c.categ_name 
         	, ie.inc_exp_name 
         	, u.user_name 
-        	, cm.cour_mon_name
         order by fb.fam_bud_create';
         
         return $sql;

@@ -33,8 +33,8 @@ class FamilyBudget extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categ_id', 'cour_mon_id', 'user_id','summa'], 'integer'],
-            [['summa'],'required']
+            [['categ_id', 'cour_mon_id', 'user_id','summa'], 'integer', 'message' => 'Только целые числа'],
+            [['summa'],'required', 'message' => 'Поле обязательно к заполнению']
         ];
     }
 
@@ -80,8 +80,8 @@ class FamilyBudget extends \yii\db\ActiveRecord
     function IncoExpens($categ_id)
     {
         $sql = 'select c.inc_exp_id from categories c where c.categ_id = '.$categ_id;
-        $query = Yii::$app->db->createCommand($sql)->queryAll();
-
+        $query = Yii::$app->db->createCommand($sql)->queryColumn();
+        $query = $query['0'];
         return $query;
     }
 }

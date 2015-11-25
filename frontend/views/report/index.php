@@ -12,8 +12,8 @@ use yii\helpers\ArrayHelper;
 <?php $form = ActiveForm::begin(); ?>
 
 
-    <?= $form->field($report, 'active_from')->input('date')?>
-    <?= $form->field($report, 'active_to')->input('date')?>
+    <?= $form->field($report, 'active_from')->input('date')->label('Дата с')?>
+    <?= $form->field($report, 'active_to')->input('date')->label('Дата до')?>
     
     
     

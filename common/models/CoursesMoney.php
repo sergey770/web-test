@@ -29,8 +29,8 @@ class CoursesMoney extends \yii\db\ActiveRecord
     {
         return [
             [['cour_mon_name'], 'string', 'max' => 50],
-            [['cour_mon_name'], 'unique'],
-            [['cour_mon_name'], 'required']
+            [['cour_mon_name'], 'unique', 'message' => 'Поле должно быть уникально'],
+            [['cour_mon_name'], 'required', 'message' => 'Поле обязательно к заполнению']
         ];
     }
 

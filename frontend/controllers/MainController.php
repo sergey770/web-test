@@ -33,12 +33,13 @@ class MainController extends Controller
         
         if($famil_bud->load(Yii::$app->request->post()) && $famil_bud->validate())
         {
-           // return print_r($_POST);
+            //return print_r($_POST);
             $famil_bud['fam_bud_create'] = date("Y-m-d");
             
             // проверяем расходы или доходs
             $query = $famil_bud -> IncoExpens($_POST['FamilyBudget']['categ_id']);
-            if ( $query = 5)
+            
+            if ( $query == 5)
             {
                 $famil_bud['summa'] = -$_POST['FamilyBudget']['summa'];
             } 

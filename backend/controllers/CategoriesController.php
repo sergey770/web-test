@@ -23,7 +23,7 @@ class CategoriesController extends Controller
         
         if($categ->load(Yii::$app->request->post()) && $categ->validate())
         {
-            return print_r($_POST);
+            //return print_r($_POST);
             $categ['categ_active_from'] = date("Y-m-d");
             
             $categ->save();
@@ -62,8 +62,6 @@ class CategoriesController extends Controller
         
         if($categ->load(Yii::$app->request->post()) && $categ->validate())
         {
-            //return print_r($_POST);
-            //$sql->updateAll(['categ_name' => $_POST['Categories']['categ_name'],'inc_exp_id' => $_POST['Categories']['inc_exp_id']],['categ_id'=>$id]);
             $q = $categ->updateCateg($id);
             return $this->redirect('index');
         }
